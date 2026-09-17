@@ -1,0 +1,59 @@
+# ESG Platform — root .gitignore
+# Generated for Phase 1
+
+# ── Secrets / Environment ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.env
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+*.local
+
+# ── IDEs ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── ML ────────────────────────────────────────────────────────────────────────
+ml/models/*.pkl
+ml/models/*.joblib
+ml/datasets/raw/
+
+# ── Uploads / Storage ─────────────────────────────────────────────────────────
+uploads/
+tmp/
+*.pdf
+# (except sample data)
+!data/sample/**
+
+# ── Alembic ───────────────────────────────────────────────────────────────────
+# Keep migrations, not generated SQL dumps
+backend/alembic/versions/__pycache__/

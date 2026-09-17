@@ -299,8 +299,8 @@ docker compose down
 
 | Phase | Feature |
 |---|---|
-| **1** | ✅ Project foundation (current) |
-| **2** | Supabase integration |
+| **1** | ✅ Project foundation |
+| **2** | ✅ Supabase integration (current) |
 | **3** | Authentication |
 | **4** | Multi-tenancy & RBAC |
 | **5** | React frontend foundation |
