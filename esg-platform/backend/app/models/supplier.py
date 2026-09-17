@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import ForeignKey, String, Float, Boolean, JSON
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base_class import Base
@@ -18,3 +18,4 @@ class Supplier(Base, TimestampMixin):
     risk_level: Mapped[str] = mapped_column(String(50), default="UNKNOWN", nullable=False) # LOW, MEDIUM, HIGH, CRITICAL, UNKNOWN
     spend_amount: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     emissions_data: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+

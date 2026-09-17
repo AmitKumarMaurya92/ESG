@@ -61,6 +61,17 @@ async def lifespan(app: FastAPI):
         settings.APP_VERSION,
         settings.ENVIRONMENT,
     )
+
+    # Create all tables on startup (safe no-op if they already exist).
+    # Models are already loaded transitively via the router imports above.
+    # For production, use Alembic migrations instead.
+    from app.db.session import engine
+    from app.db.base_class import Base
+    import app.models  # noqa: F401 — ensure all models are registered
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    logger.info("Database tables verified / created.")
+
     yield
     logger.info("Shutting down %s", settings.APP_NAME)
 

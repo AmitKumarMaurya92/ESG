@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Shield, CheckCircle, XCircle, Clock, AlertCircle, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext.jsx'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'
+const API = import.meta.env.VITE_API_URL || '/api/v1'
 
 const STATUS_CONFIG = {
   COMPLETE: { label: 'Complete', icon: CheckCircle, color: 'text-emerald-400', bg: 'bg-emerald-900/30 border-emerald-800' },

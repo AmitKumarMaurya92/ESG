@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import ForeignKey, String, Integer
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base_class import Base
@@ -20,3 +20,4 @@ class Document(Base, TimestampMixin):
     storage_path: Mapped[str] = mapped_column(String(1024), nullable=False)
     processing_status: Mapped[str] = mapped_column(String(50), default="UPLOADED", nullable=False) # UPLOADED, PROCESSING, EXTRACTED, REVIEW_REQUIRED, APPROVED, FAILED
     extraction_status: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+

@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import ForeignKey, String, Boolean
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base_class import Base
@@ -35,3 +35,4 @@ class ComplianceRecord(Base, TimestampMixin):
     status: Mapped[str] = mapped_column(String(50), default="MISSING", nullable=False) # COMPLETE, PARTIAL, MISSING, NEEDS_REVIEW, NOT_APPLICABLE
     evidence_document_id: Mapped[Optional[uuid.UUID]] = mapped_column(UUID(as_uuid=True), ForeignKey("documents.id", ondelete="SET NULL"), nullable=True)
     notes: Mapped[Optional[str]] = mapped_column(String(1024), nullable=True)
+

@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import ForeignKey, String, Boolean, JSON
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base_class import Base
@@ -17,3 +17,4 @@ class Notification(Base, TimestampMixin):
     message: Mapped[str] = mapped_column(String(1024), nullable=False)
     is_read: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     metadata_data: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+

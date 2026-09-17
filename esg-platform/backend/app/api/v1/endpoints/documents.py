@@ -64,16 +64,18 @@ async def upload_document(
     doc_id = uuid.uuid4()
     path = f"{org_id}/{doc_id}_{file.filename}"
     
-    # Upload to Supabase Storage
-    storage_service = SupabaseStorageService()
-    try:
-        storage_service.upload_file(
-            file_bytes=file_bytes,
-            path=path,
-            content_type=file.content_type
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Storage error: {str(e)}")
+    # Upload to Supabase Storage (skipped in local dev mode when service role key is absent)
+    from app.core.config import settings
+    if settings.SUPABASE_SERVICE_ROLE_KEY:
+        storage_service = SupabaseStorageService()
+        try:
+            storage_service.upload_file(
+                file_path=path,
+                file_bytes=file_bytes,
+                content_type=file.content_type,
+            )
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Storage error: {str(e)}")
 
     # Save to DB
     new_doc = Document(
@@ -122,12 +124,14 @@ async def delete_document(
     if not doc:
         raise HTTPException(status_code=404, detail="Document not found")
         
-    # Remove from storage
-    storage_service = SupabaseStorageService()
-    try:
-        storage_service.delete_file(doc.storage_path)
-    except Exception as e:
-        pass # If file is already gone, just delete DB record
+    # Remove from storage (skipped in local dev when service role key is absent)
+    from app.core.config import settings
+    if settings.SUPABASE_SERVICE_ROLE_KEY:
+        storage_service = SupabaseStorageService()
+        try:
+            storage_service.delete_file(doc.storage_path)
+        except Exception:
+            pass  # If file is already gone, just delete DB record
 
     await db.delete(doc)
     await db.commit()

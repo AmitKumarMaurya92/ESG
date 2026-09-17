@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, List, Optional
 from sqlalchemy import String
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base_class import Base
@@ -46,3 +46,4 @@ class Organization(Base, TimestampMixin):
         back_populates="organization",
         cascade="all, delete-orphan",
     )
+

@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import Float, String, Date
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base_class import Base
@@ -26,3 +26,4 @@ class EmissionFactor(Base, TimestampMixin):
     valid_from: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     valid_to: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     methodology: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+

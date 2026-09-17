@@ -1,7 +1,7 @@
 import uuid
 from typing import TYPE_CHECKING, Optional
 from sqlalchemy import ForeignKey, String
-from sqlalchemy.dialects.postgresql import UUID
+from app.db.types import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base_class import Base
@@ -34,6 +34,9 @@ class Facility(Base, TimestampMixin):
     code: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     country: Mapped[str] = mapped_column(String(100), nullable=False)
     state_province: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    city: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    address: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    postal_code: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
     facility_type: Mapped[str] = mapped_column(
         String(100),
         default="office",
@@ -46,3 +49,5 @@ class Facility(Base, TimestampMixin):
         "Organization",
         back_populates="facilities",
     )
+
+

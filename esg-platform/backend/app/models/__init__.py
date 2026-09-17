@@ -18,3 +18,4 @@ from app.models.compliance import Framework, FrameworkRequirement, ComplianceRec
 from app.models.notification import Notification  # noqa: F401
 from app.models.report import Report  # noqa: F401
 from app.models.supplier import Supplier  # noqa: F401
+
