@@ -16,5 +16,5 @@ class RiskEvent(Base, TimestampMixin):
     actual_value: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     severity: Mapped[str] = mapped_column(String(50), nullable=False) # LOW, MEDIUM, HIGH, CRITICAL
     confidence: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
-    status: Mapped[str] = mapped_column(String(50), default="OPEN", nullable=False) # OPEN, INVESTIGATING, RESOLVED
+    status: Mapped[str] = mapped_column(String(50), default="open", nullable=False) # open, investigating, resolved
     details: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)

@@ -33,6 +33,7 @@ const queryClient = new QueryClient({
  * Phase 1: Landing page route.
  * Phase 2: Supabase integration (backend + frontend services).
  * Phase 3: Authentication (AuthContext, ProtectedRoute, Dashboard).
+ * Phase 4–14: Core platform pages (Emissions, Compliance, Chat, etc.)
  */
 export default function App() {
   return (
@@ -40,129 +41,111 @@ export default function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            {/* Public routes */}
+            {/* ── Public routes ──────────────────────────────────────── */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
 
-            {/* Protected routes */}
-            <Route 
-              path="/onboarding" 
+            {/* ── Onboarding (protected, no sidebar) ────────────────── */}
+            <Route
+              path="/onboarding"
               element={
                 <ProtectedRoute>
                   <OnboardingPage />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/dashboard" 
+
+            {/* ── Dashboard layout wrapper for all authenticated pages ─ */}
+            <Route
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <DashboardPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/facilities" 
+            <Route
+              path="/facilities"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <FacilitiesPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/documents" 
+            <Route
+              path="/documents"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <DocumentsPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/emissions" 
+            <Route
+              path="/emissions"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <EmissionsPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/reports" 
+            <Route
+              path="/reports"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <ReportsPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/reports" 
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout>
-                    <ReportsPage />
-                  </DashboardLayout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/suppliers" 
+            <Route
+              path="/suppliers"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <SuppliersPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/compliance" 
+            <Route
+              path="/compliance"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <CompliancePage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/assistant" 
+            <Route
+              path="/assistant"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <ChatPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/assistant" 
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout>
-                    <ChatPage />
-                  </DashboardLayout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/settings" 
+            <Route
+              path="/settings"
               element={
                 <ProtectedRoute>
                   <DashboardLayout>
                     <SettingsPage />
                   </DashboardLayout>
                 </ProtectedRoute>
-              } 
+              }
             />
           </Routes>
         </BrowserRouter>
